@@ -4,22 +4,34 @@ import java.text.MessageFormat;
 
 public class WeatherReporter {
 
-    public String location;
-    public double temperature;
+    private String location;
+    private double temperature;
+
+    private final int TEMP_CONST = 32;
+
+    private final double CONVERSION_TO_FAHRENHEIT_VALUE = (9.0 / 5.0);
+
+    private final int MIN_TEMP_THRESHOLD = 10;
+
+    private final int MAX_TEMP_THRESHOLD = 30;
+
 
     public WeatherReporter(String location, double temperature) {
         this.location = location;
         this.temperature = temperature;
     }
 
-    public String print() {
-
-        double newTemp = (9.0 / 5.0) * temperature + 32;
-        return MessageFormat.format("I am in {0} and it is {1}. {2}. The temperature in Fahrenheit is {3}.", location, check1(), check2(), newTemp);
+    public String showTemperature() {
+        return MessageFormat.format("I am in {0} and it is {1}. {2}. The temperature in Fahrenheit is {3}.", location, checkWeather(), checkTemperature(), convertToFahrenheit());
 
     }
 
-    public String check1() {
+    public double convertToFahrenheit() {
+        double temperatureFahrenheit = CONVERSION_TO_FAHRENHEIT_VALUE * temperature + TEMP_CONST;
+        return temperatureFahrenheit;
+    }
+
+    public String checkWeather() {
         if (location == "London") {
 
             return "🌦";
@@ -36,12 +48,12 @@ public class WeatherReporter {
         return "🔆";
     }
 
-    public String check2() {
-        if (temperature > 30) {
+    public String checkTemperature() {
+        if (temperature > MAX_TEMP_THRESHOLD) {
 
             return "It's too hot 🥵!";
 
-        } else if (temperature < 10) {
+        } else if (temperature < MIN_TEMP_THRESHOLD) {
 
             return "It's too cold 🥶!";
 
