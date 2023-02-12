@@ -27,21 +27,18 @@ public class WeatherReporter {
     }
 
     public double convertToFahrenheit() {
-        double temperatureFahrenheit = CONVERSION_TO_FAHRENHEIT_VALUE * temperature + TEMP_CONST;
-        return temperatureFahrenheit;
+        return CONVERSION_TO_FAHRENHEIT_VALUE * temperature + TEMP_CONST;
     }
 
     public String checkWeather() {
-        if (location == "London") {
 
+        if (checkWeather().equals(location.equals("London"))) {
             return "🌦";
 
-        } else if (location == "California") {
-
+        } else if (checkWeather().equals(location.equals("California"))) {
             return "🌅";
 
-        } else if (location == "Cape Town") {
-
+        } else if (location.equals("Cape Town")) {
             return "🌤";
 
         }
